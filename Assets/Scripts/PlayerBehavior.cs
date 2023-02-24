@@ -78,7 +78,7 @@ public class PlayerBehavior : MonoBehaviour, IShoot
         Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
 
         _rb.MovePosition(transform.position + (Time.fixedDeltaTime * vInput * transform.forward));
-        _rb.MoveRotation(_rb.rotation * angleRot);
+        
     }
 
     private bool IsGrounded()

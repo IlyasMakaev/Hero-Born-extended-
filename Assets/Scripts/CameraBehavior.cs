@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraBehavior : MonoBehaviour
 {
     public Vector3 camOffset = new Vector3(0f, 3f, -4f);
-   
+
+    public CharacterController controller;
+    public float speed = 6f;
 
     private Transform target;
     // Update is called once per frame

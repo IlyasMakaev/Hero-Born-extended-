@@ -110,11 +110,11 @@ public class GameBehavior : MonoBehaviour, IManager
         lootStack.Push("Winged Boot");
         lootStack.Push("Mythril Bracers");
 
-        GameObject player = GameObject.Find("Player");
+        //GameObject player = GameObject.Find("Player");
 
-        PlayerBehavior playerBehavior= player.GetComponent<PlayerBehavior>();
+        //PlayerBehavior playerBehavior= player.GetComponent<PlayerBehavior>();
 
-        playerBehavior.playerJump += HandlePlayerJump;
+        //playerBehavior.playerJump += HandlePlayerJump;
     }
 
     public void HandlePlayerJump()
