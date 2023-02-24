@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
     public Transform groundCheck;
+    public Vector2 _look;
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
     public float groundDistance = 0.4f;
@@ -14,16 +15,35 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     [SerializeField] private bool isGrounded;
+    private float rotationPower = 2f;
     private float smoothVelocity;
     private float gravity = -9.81f;
     Vector3 velocity;
+    public GameObject followTransform;
 
 
     void Update()
     {
-       
-        
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_look.x * rotationPower, Vector3.up);
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_look.y * rotationPower, Vector3.right);
 
+        var angles = followTransform.transform.localEulerAngles;
+        angles.z = 0;
+        var angleX = followTransform.transform.localEulerAngles.x;
+
+        if(angleX > 180 && angleX < 340)
+        {
+            angles.x = 340;
+        }
+        else if(angleX < 180 && angleX > 40)
+        {
+            angles.x = 40;
+        }
+        
+        followTransform.transform.localEulerAngles = angles;
+
+        transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
+        followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
 
         //Movement of a Player
         float horizontal = Input.GetAxisRaw("Horizontal");
